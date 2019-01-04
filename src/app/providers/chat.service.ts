@@ -16,12 +16,19 @@ export class ChatService {
   constructor(private afs: AngularFirestore) {}
 
   cargarMensajes() {
-    this.itemsCollection = this.afs.collection<Chats>('chats');
+    this.itemsCollection = this.afs.collection<Chats>('chats', ref => ref.orderBy('fecha', 'desc')
+                                                                         .limit(15));
 
     return this.itemsCollection.valueChanges()
-      .pipe ( map ( data => {
-        console.log(data);
-        this.chats = data;
+      .pipe ( map ( (mensajes: Chats[]) => {
+        console.log( mensajes );
+        this.chats = [];
+
+        for ( const mensaje of mensajes ) {
+          this.chats.unshift ( mensaje ); // Inserta en la primera posicion
+          // this.chats = mensajes.reverse();
+        }
+        return this.chats;
       }));
     }
 

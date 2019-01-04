@@ -10,13 +10,20 @@ export class ChatComponent implements OnInit {
 
   // tslint:disable-next-line:no-inferrable-types
   mensaje: string = '';
+  elemento: any;
 
   constructor(public chatService: ChatService) {
     this.chatService.cargarMensajes()
-      .subscribe();
+      .subscribe( () => {
+
+        setTimeout( () => {
+          this.elemento.scrollTop = this.elemento.scrollHeight;
+        }, 20);
+      });
    }
 
   ngOnInit() {
+    this.elemento = document.getElementById('app-mensajes');
   }
 
   enviar_mensaje() {
