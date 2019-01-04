@@ -2,18 +2,19 @@
 <hr>
 <div class="app-mensajes" id="app-mensajes">
 
-  <div class="text-right">
+  <div class="text-right"
+        *ngFor="let chat of chatService.chats">
     <span class="badge badge-primary">Lionel</span>
     <p>
-      Mensaje
+      {{ chat.mensaje}}
     </p>
   </div>
-  <div>
+  <!-- <div>
       <span class="badge badge-success">Andrea</span>
       <p>
         Mensaje de andrea
       </p>
-    </div>
+    </div> -->
 
 </div>
 
