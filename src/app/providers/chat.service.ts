@@ -54,7 +54,7 @@ export class ChatService {
       }));
     }
 
-    agregarMensaje( text: string) {
+    agregarMensaje( text: string ) {
       const mensaje: Chats = {
         nombre: this.usuario.nombre,
         mensaje: text,

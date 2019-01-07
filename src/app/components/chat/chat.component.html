@@ -1,13 +1,14 @@
 <h1>Chat</h1>
 <hr>
 <div class="app-mensajes" id="app-mensajes">
-
   <div *ngFor="let chat of chatService.chats"
        [ngClass]="{ 'text-right': chatService.usuario.uid == chat.iud }">
     <span class="badge"
           [ngClass]="{ 'badge-primary': chatService.usuario.uid == chat.iud,
                        'badge-success': chatService.usuario.uid != chat.iud }">
-                       {{ chat.nombre }}</span>
+                       {{ chat.nombre }}
+                <small>{{chat.fecha | date: 'dd/MM/yyyy'}}</small>
+    </span>
     <p>
       {{ chat.mensaje }}
     </p>
